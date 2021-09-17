@@ -81,7 +81,7 @@ class Plugin(plugin.SpeechHandlerPlugin):
                     # One interface, one protocol
                     # My IP address is 10.42.0.120.
                     for protocol in IPAddresses[interface]:
-                        mic.say("My IP address is {}.".format(protocol, IPAddresses[interface][protocol]))
+                        mic.say("My IP address is {}.".format(IPAddresses[interface][protocol]))
                 else:
                     # One interface, multiple protocols
                     # My ipv4 address is 10.42.0.120. My ipv6 address is fe80::1.
