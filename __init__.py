@@ -108,12 +108,16 @@ class Plugin(plugin.SpeechHandlerPlugin):
         IPAddresses = {}
         for interface in interfaces():
             if interface != 'lo':
-                if interface not in IPAddresses:
-                    IPAddresses[interface]={}
-                for link in ifaddresses(interface)[AF_INET]:
-                    IPAddresses[interface]['ipv4']=link['addr']
-                for link in ifaddresses(interface)[AF_INET6]:
-                    # Filter out addresses that are unspecified(::), loopback(::1), link local (fe80) or multicast (ff00)
-                    if(link['addr'][:4] not in ('::','::1','fe80','ff00')):
-                        IPAddresses[interface]['ipv6']=link['addr']
+                if(AF_INET in ifaddresses(interface)):
+                    for link in ifaddresses(interface)[AF_INET]:
+                        if interface not in IPAddresses:
+                            IPAddresses[interface]={}
+                        IPAddresses[interface]['ipv4']=link['addr']
+                if(AF_INET6 in ifaddresses(interface)):
+                    for link in ifaddresses(interface)[AF_INET6]:
+                        # Filter out addresses that are unspecified(::), loopback(::1), link local (fe80) or multicast (ff00)
+                        if(link['addr'][:4] not in ('::','::1','fe80','ff00')):
+                            if interface not in IPAddresses:
+                                IPAddresses[interface]={}
+                            IPAddresses[interface]['ipv6']=link['addr']
         return IPAddresses
