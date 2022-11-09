@@ -1,5 +1,6 @@
 [Plugin]
 Name = NetworkCheck
-Version = 0.0.1
-License = MIT
 Description = Simple speechhandler plugin, tells if it is connected to a network and what its IP Address is.
+Version = 1.0.1
+License = MIT
+URL = https://github.com/aaronchantrill/NaomiNetworkCheck.git
